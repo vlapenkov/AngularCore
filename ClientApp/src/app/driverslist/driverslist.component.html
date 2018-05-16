@@ -1,0 +1,43 @@
+<h1>Drivers list</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+<p *ngIf="!driverslist"><em>Loading...</em></p>
+
+<nav class="navbar">
+    <input class="form-control" type="text" name="search" [(ngModel)]="filter">
+</nav>
+
+{{filter}}
+
+<button (click)="sort('fio')">
+            Fio
+            <span class="glyphicon sort-icon" *ngIf="key =='fio'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+    </button>
+    
+    
+
+        <button (click)="sort('phone')">
+            Phone
+            <span class="glyphicon sort-icon" *ngIf="key =='phone'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+        </button>
+    
+<section *ngIf="driverslist">
+
+
+        <ul *ngFor="let driver of driverslist | orderBy: key : reverse | filter:filter | paginate: {itemsPerPage: 50, currentPage:page, id: '1'}; let i = index">
+            <li>
+                <driverslist-item [driver]="driver" (eventClick)="handleEventClicked($event)">
+
+
+                </driverslist-item>
+            </li>
+        </ul>
+   
+</section>
+<pagination-controls (pageChange)="page = $event" id="1"
+                     maxSize="50"
+                     directionLinks="true"
+                     autoHide="false">
+</pagination-controls>
+

@@ -1,0 +1,8 @@
+<div>
+    {{ driver.id }}
+    {{ driver.fio }}
+    <a (click)="clickMe($event)">
+        {{ driver.phone }}
+    </a>
+    <a [routerLink]="['/drivers', driver.id]" href="">edit driver {{driver.fio}}</a>
+</div>
