@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Driver, SomeType } from '../driverslist/driverslist.component';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import 'rxjs/add/observable/throw';
 
 
 
@@ -38,7 +39,15 @@ export class DriverService {
   }
 
   getDrivers(): Observable<Driver[]> {
-    return this.http.get<Driver[]>(this._baseUrl + this.path , /*{ observe: "response" }*/);    
+    return this.http.get<Driver[]>(this._baseUrl + this.path, /*{ observe: "response" }*/) .catch(e => {
+      console.log('error on get drivers in service');
+
+//в этом случае сервис передает пустой массив в компонент
+      //return Observable.of<Driver[]>()
+
+      // в этом случае сервис передает ошибку в компонент
+     return Observable.throw({ description: 'pass this error to component' });
+    });    
   }
 
 

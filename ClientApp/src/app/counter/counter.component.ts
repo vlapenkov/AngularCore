@@ -1,22 +1,27 @@
 import { Component } from '@angular/core';
-import { HeroService } from '../services/hero.service';
+import { Input } from '@angular/core';
+import { CounterService } from '../services/counter.service';
 
 
 @Component({
   selector: 'app-counter-component',
   templateUrl: './counter.component.html',
-  providers: [HeroService]
+  providers: [CounterService]
 })
 export class CounterComponent {
-  public currentCount = 0;
+  
+  @Input('counter')
+  public currentCount?:number;
 
+  @Input() test:string;
 
-  constructor(private hService: HeroService) { }
+  constructor(private hService: CounterService) { }
 
   public incrementCounter() {
-     this.hService.incrementCounter();
-    this.currentCount = this.hService.currentCount;
+    if (!this.currentCount) this.currentCount = 1
+   else
+    this.currentCount++
 
-    //this.currentCount++;
+  
   }
 }

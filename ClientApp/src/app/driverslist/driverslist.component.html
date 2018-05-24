@@ -22,10 +22,10 @@
             <span class="glyphicon sort-icon" *ngIf="key =='phone'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
         </button>
     
-<section *ngIf="driverslist">
+<section *ngIf="driverslist$ | async as dl">
 
-
-        <ul *ngFor="let driver of driverslist | orderBy: key : reverse | filter:filter | paginate: {itemsPerPage: 50, currentPage:page, id: '1'}; let i = index">
+    
+        <ul *ngFor="let driver of dl  | orderBy: key : reverse | filter:filter | paginate: {itemsPerPage: 50, currentPage:page, id: '1'}; let i = index">
             <li>
                 <driverslist-item [driver]="driver" (eventClick)="handleEventClicked($event)">
 
@@ -34,6 +34,12 @@
             </li>
         </ul>
    
+</section>
+
+<section *ngIf="!driverslist">
+    
+   <h3> Drivers list is empty</h3>
+
 </section>
 <pagination-controls (pageChange)="page = $event" id="1"
                      maxSize="50"

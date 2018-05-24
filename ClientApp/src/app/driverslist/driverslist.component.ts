@@ -2,7 +2,9 @@ import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { OnInit, DoCheck } from '@angular/core';
 import { DriverService } from '../services/driver.service';
-//import { setTimeout } from 'timers';
+import { Observable } from 'rxjs/Observable';
+
+import 'rxjs/add/observable/of';
 
 
 
@@ -11,6 +13,8 @@ import { DriverService } from '../services/driver.service';
   templateUrl: './driverslist.component.html'
 })
 export class DriverslistComponent implements OnInit, DoCheck {
+
+  
 ngDoCheck(): void {
 
   console.log('some prop is changed');
@@ -22,20 +26,31 @@ ngDoCheck(): void {
 
   
   ngOnInit(): void {
-    
+
+  // если ошибка перехвачена в червисе, то здесь не выполняется, а driverslist$=Observable.of<Driver[]>() из сервиса
+    this.driverslist$ = this.driverService.getDrivers().catch(e => {
+      debugger;
+      console.log('error on get drivers in component :'+ e.description);
+      return Observable.of<Driver[]>()
+    }
+);
+  /*
     this.driverService.getDrivers().subscribe(data => {
       console.log(data);
       this.driverslist = data
     },
-         err => console.error(err),
+      err => {
+        console.error(err), console.log('Caught in component');
+      },
             () => console.log('done loading drivers')
-    );
+    ); */
 
    setTimeout(() => { this.testDoCheck = true }, 10000);
 
 }
 
   public driverslist: Driver[];
+  driverslist$: Observable<Driver[]>;
   p: number = 1;
   //sorting
   key: string = 'fio'; //set default

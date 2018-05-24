@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { Driver } from '../driverslist/driverslist.component';
 import { HttpErrorResponse } from '@angular/common/http';
 
+
 @Injectable()
 export class DriverRouteActivator implements CanActivate {
   constructor(private driverService: DriverService, private router: Router) {
@@ -16,6 +17,7 @@ export class DriverRouteActivator implements CanActivate {
     return this.driverService.getOneDriver(route.params['id']).map(res => {
       debugger;
       if (res === null) {
+    
         this.router.navigate(['/']);
         return false;
       }

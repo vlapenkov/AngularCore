@@ -3,6 +3,31 @@
 Если пароль и логин верные, то в сервисе вызывается do, а в login.component - subscribe
 иначе в login.component  error => {...}
 
+2.
+2.1. подключаем jquery в npm i jquery --save, то же самое с bootstrap и toast
++
+npm install --save-dev @types/jquery
+
+Of course not, TypeScript provides declaration files (*.d.ts) which define types and standardize a JavaScript file/libraries for TypeScript.
+
+
+
+2.2. подключаем 
+ "styles": [
+        "styles.css",
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "../node_modules/toastr/build/toastr.css"
+      ],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.js",
+        "../node_modules/toastr/build/toastr.min.js"
+
+      ],
+
+  2.3 в Error404Component 
+	  declare let toastr;
+	  declare let $;
 
 
 # AngularCore

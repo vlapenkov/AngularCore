@@ -15,8 +15,10 @@ export class TokenInterceptor implements HttpInterceptor {
   // для запроса api/accounts/login не проверяем
 
 
-    let relativeUrl = this.router.url; //request.url.replace(/^(?:\/\/|[^\/]+)*\//, "");
-    if (request.url.includes('login')) return next.handle(request.clone());
+    let relativeUrl = this.router.url; 
+
+    // проверяем token только для drivers
+    if (!request.url.includes('drivers')) return next.handle(request.clone());
     
 
     let token = localStorage.getItem('auth_token')
@@ -31,9 +33,13 @@ export class TokenInterceptor implements HttpInterceptor {
         do(
         succ => { },
         err => {
-          debugger;
+          //debugger;
           if (err.status === 401)
             this.router.navigate(['login'], { queryParams: { redirectToUrl: relativeUrl } })
+          else {
+            console.log('error on get drivers in TokenInterceptor');
+          }
+            //this.router.navigate(['404']) 
         }
         );
     } else { this.router.navigate(['login'], { queryParams: { redirectToUrl: relativeUrl } }) }

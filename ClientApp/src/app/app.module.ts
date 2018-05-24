@@ -15,34 +15,36 @@ import { DriverslistitemComponent } from './driverlistitem/driverslistitem.compo
 import { Ng2SearchPipeModule } from 'ng2-search-filter'; //importing the module
 import { Ng2PaginationModule } from 'ng2-pagination'; //importing ng2-pagination
 import { Ng2OrderModule } from 'ng2-order-pipe'; //importing the module
-import { HeroService } from './services/hero.service';
+//import { HeroService } from './services/hero.service';
 import { DriverService } from './services/driver.service';
+import { SingletonService } from './services/singleton.service';
 import { AuthenticationService } from './services/authentication.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 import {
   MatAutocompleteModule,
   MatButtonModule,
   MatButtonToggleModule,
-  MatCardModule,
+//  MatCardModule,
   MatCheckboxModule,
-  MatChipsModule,
+//  MatChipsModule,
   MatDatepickerModule,
   MatDialogModule,
-  MatExpansionModule,
-  MatGridListModule,
-  MatIconModule,
+//  MatExpansionModule,
+//  MatGridListModule,
+ // MatIconModule,
   MatInputModule,
   MatListModule,
-  MatMenuModule,
-  MatNativeDateModule,
+//  MatMenuModule,
+ // MatNativeDateModule,
   MatPaginatorModule,
-  MatProgressBarModule,
-  MatProgressSpinnerModule,
+//  MatProgressBarModule,
+ // MatProgressSpinnerModule,
   MatRadioModule,
-  MatRippleModule,
+ // MatRippleModule,
   MatSelectModule,
-  MatSidenavModule,
+/*  MatSidenavModule,
   MatSliderModule,
   MatSlideToggleModule,
   MatSnackBarModule,
@@ -51,7 +53,7 @@ import {
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule,
-  MatStepperModule,
+  MatStepperModule, */
 } from '@angular/material';
 
 
@@ -64,13 +66,15 @@ import { DriverRouteActivator } from './services/driverroute.activator';
 import { Error404Component } from './error404/error404.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './services/token.interceptor';
+import { SomeOtherModule } from './some-other/some-other.module';
 
 @NgModule({
+// то что принадлежит этому модулю
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
+  //  CounterComponent - принадлежит другому модулю,
     FetchDataComponent,
     DriverslistComponent,
     DriverslistitemComponent,
@@ -91,25 +95,25 @@ import { TokenInterceptor } from './services/token.interceptor';
     MatAutocompleteModule,
     MatButtonModule,
     MatButtonToggleModule,
-    MatCardModule,
+  //  MatCardModule,
     MatCheckboxModule,
-    MatChipsModule,
+  //  MatChipsModule,
     MatDatepickerModule,
     MatDialogModule,
-    MatExpansionModule,
-    MatGridListModule,
-    MatIconModule,
+  //  MatExpansionModule,
+ //   MatGridListModule,
+ //   MatIconModule,
     MatInputModule,
     MatListModule,
-    MatMenuModule,
-    MatNativeDateModule,
+//    MatMenuModule,
+//    MatNativeDateModule,
     MatPaginatorModule,
-    MatProgressBarModule,
-    MatProgressSpinnerModule,
+ //   MatProgressBarModule,
+ //   MatProgressSpinnerModule,
     MatRadioModule,
-    MatRippleModule,
+ //   MatRippleModule,
     MatSelectModule,
-    MatSidenavModule,
+ /*   MatSidenavModule,
     MatSliderModule,
     MatSlideToggleModule,
     MatSnackBarModule,
@@ -118,7 +122,8 @@ import { TokenInterceptor } from './services/token.interceptor';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatStepperModule,
+    MatStepperModule, */
+   SomeOtherModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent }, 
@@ -129,7 +134,7 @@ import { TokenInterceptor } from './services/token.interceptor';
       { path: '404', component: Error404Component }, 
     ])
   ],
-  providers: [DriverService, AuthenticationService, DriverRouteActivator,
+  providers: [DriverService, AuthenticationService, DriverRouteActivator, SingletonService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

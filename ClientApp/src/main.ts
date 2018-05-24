@@ -8,8 +8,13 @@ export function getBaseUrl() {
   return document.getElementsByTagName('base')[0].href;
 }
 
+export function getAppDettings() {
+  return {'projName':'first', 'testprop1':'second'};
+}
+
 const providers = [
-  { provide: 'BASE_URL', useFactory: getBaseUrl, deps: [] }
+  { provide: 'BASE_URL', useFactory: getBaseUrl, deps: [] },
+  { provide: 'SETTINGS', useFactory: getAppDettings, deps: [] }
 ];
 
 if (environment.production) {
