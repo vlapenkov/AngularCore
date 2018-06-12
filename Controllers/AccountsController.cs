@@ -25,7 +25,7 @@ namespace AngularCore.Controllers
 {
     /// <summary>
     /// jwt token authentication https://dotnetthoughts.net/token-based-authentication-in-aspnet-core/ и 
-    /// как дружить с ангуляром
+    /// как дружить с ангуляром 2
     /// https://fullstackmark.com/post/13/jwt-authentication-with-aspnet-core-2-web-api-angular-5-net-core-identity-and-facebook-login 
     /// </summary>
     [Route("api/[controller]")]
