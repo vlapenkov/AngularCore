@@ -25,4 +25,8 @@ export class NavMenuComponent {
   toggle() {
     this.isExpanded = !this.isExpanded;
   }
+
+  ngDoCheck() {
+    console.log('checked in nav-menu component');
+  }
 }

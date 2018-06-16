@@ -14,6 +14,14 @@ import 'rxjs/add/observable/of';
 })
 export class DriverslistComponent implements OnInit, DoCheck {
 
+  public driverslist: Driver[];
+  driverslist$: Observable<Driver[]>;
+  p: number = 1;
+  //sorting
+  key: string = 'fio'; //set default
+  reverse: boolean = false;
+
+  testDoCheck = true;
   
 ngDoCheck(): void {
 
@@ -31,7 +39,8 @@ ngDoCheck(): void {
     this.driverslist$ = this.driverService.getDrivers().catch(e => {
       debugger;
       console.log('error on get drivers in component :'+ e.description);
-      return Observable.of<Driver[]>()
+      //return Observable.of<Driver[]>()
+      return Observable.empty<Driver[]>()
     }
 );
   /*
@@ -49,14 +58,7 @@ ngDoCheck(): void {
 
 }
 
-  public driverslist: Driver[];
-  driverslist$: Observable<Driver[]>;
-  p: number = 1;
-  //sorting
-  key: string = 'fio'; //set default
-  reverse: boolean = false;
-
-  testDoCheck = true;
+  
 
   sort(key) {
     this.key = key;

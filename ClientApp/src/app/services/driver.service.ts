@@ -35,18 +35,20 @@ export class DriverService {
   }
   
   handleError(arg0: any): any {
-    console.log('error ' + arg0)
+    console.log('error error on get drivers in service' + arg0)
   }
 
   getDrivers(): Observable<Driver[]> {
     return this.http.get<Driver[]>(this._baseUrl + this.path, /*{ observe: "response" }*/) .catch(e => {
-      console.log('error on get drivers in service');
+      this.handleError(e);
 
 //в этом случае сервис передает пустой массив в компонент
-      //return Observable.of<Driver[]>()
 
+      
+      // return Observable.of<Driver[]>()
+      return Observable.empty<Driver[]>()
       // в этом случае сервис передает ошибку в компонент
-     return Observable.throw({ description: 'pass this error to component' });
+     //return Observable.throw({ description: 'pass this error to component' });
     });    
   }
 

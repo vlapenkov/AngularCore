@@ -8,8 +8,10 @@
 +
 npm install --save-dev @types/jquery
 
-Of course not, TypeScript provides declaration files (*.d.ts) which define types and standardize a JavaScript file/libraries for TypeScript.
-
+Not all JavaScript libraries/frameworks have TypeScript declaration files. 
+On the other hand, we might want to use libraries/frameworks in our TypeScript files without getting compilation errors. What can we do? 
+One solution is to use the declare keyword. 
+The declare keyword is used for ambient declarations where you want to define a variable that may not have originated from a TypeScript file.
 
 
 2.2. подключаем 

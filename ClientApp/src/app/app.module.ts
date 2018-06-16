@@ -26,39 +26,26 @@ import {
   MatAutocompleteModule,
   MatButtonModule,
   MatButtonToggleModule,
-//  MatCardModule,
+
   MatCheckboxModule,
-//  MatChipsModule,
+
   MatDatepickerModule,
   MatDialogModule,
-//  MatExpansionModule,
-//  MatGridListModule,
- // MatIconModule,
+
   MatInputModule,
   MatListModule,
-//  MatMenuModule,
- // MatNativeDateModule,
+
   MatPaginatorModule,
-//  MatProgressBarModule,
- // MatProgressSpinnerModule,
+
   MatRadioModule,
- // MatRippleModule,
+
   MatSelectModule,
-/*  MatSidenavModule,
-  MatSliderModule,
-  MatSlideToggleModule,
-  MatSnackBarModule,
-  MatSortModule,
-  MatTableModule,
-  MatTabsModule,
-  MatToolbarModule,
-  MatTooltipModule,
-  MatStepperModule, */
+
 } from '@angular/material';
 
 
 
-//import { DriverForm } from './hero.service';
+
 import { EmitterService } from './services/emitterservice';
 import { DriverformComponent } from './driver-form/driver-form.component';
 import { LoginComponent } from './login/login.component';
@@ -67,6 +54,7 @@ import { Error404Component } from './error404/error404.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './services/token.interceptor';
 import { SomeOtherModule } from './some-other/some-other.module';
+import { SampleComponent } from './sample/sample.component';
 
 @NgModule({
 // то что принадлежит этому модулю
@@ -80,7 +68,8 @@ import { SomeOtherModule } from './some-other/some-other.module';
     DriverslistitemComponent,
     DriverformComponent,
     LoginComponent,
-    Error404Component
+    Error404Component,
+    SampleComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -88,41 +77,20 @@ import { SomeOtherModule } from './some-other/some-other.module';
     HttpClientModule,
     FormsModule,
    Ng2SearchPipeModule, 
-    Ng2OrderModule,
-      
+    Ng2OrderModule,      
     Ng2PaginationModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
     MatButtonModule,
     MatButtonToggleModule,
-  //  MatCardModule,
     MatCheckboxModule,
-  //  MatChipsModule,
     MatDatepickerModule,
     MatDialogModule,
-  //  MatExpansionModule,
- //   MatGridListModule,
- //   MatIconModule,
     MatInputModule,
     MatListModule,
-//    MatMenuModule,
-//    MatNativeDateModule,
-    MatPaginatorModule,
- //   MatProgressBarModule,
- //   MatProgressSpinnerModule,
-    MatRadioModule,
- //   MatRippleModule,
-    MatSelectModule,
- /*   MatSidenavModule,
-    MatSliderModule,
-    MatSlideToggleModule,
-    MatSnackBarModule,
-    MatSortModule,
-    MatTableModule,
-    MatTabsModule,
-    MatToolbarModule,
-    MatTooltipModule,
-    MatStepperModule, */
+    MatPaginatorModule, 
+    MatRadioModule, 
+    MatSelectModule, 
    SomeOtherModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -131,7 +99,7 @@ import { SomeOtherModule } from './some-other/some-other.module';
       { path: 'drivers', component: DriverslistComponent },
       { path: 'drivers/:id', component: DriverformComponent,  canActivate: [DriverRouteActivator] },
       { path: 'login', component: LoginComponent },
-      { path: '404', component: Error404Component }, 
+      { path: '**', component: Error404Component }, 
     ])
   ],
   providers: [DriverService, AuthenticationService, DriverRouteActivator, SingletonService,
