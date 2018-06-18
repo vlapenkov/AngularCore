@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/do';
 import { tap, map } from 'rxjs/operators';
+import { EmitterService } from '../services/emitterservice';
 
 
 
@@ -20,6 +21,7 @@ export class LoginResponse implements ILoginResponse
 export class AuthenticationService {
   public token: string;
   public _loggedIn: boolean = false;
+  public _userName: string;
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -31,11 +33,14 @@ export class AuthenticationService {
     // set token if saved in local storage  
   }
 
-  loginfake(username: string, password: string): Observable<boolean> {
-    //  return Observable.of(new LoginResponse('123')).delay(1000).map(p => p.token == '1').do(res => console.log(res)).do(res => console.log(res));
+  loginfake(username: string, password: string): Observable<boolean> {    
     
    return Observable.of(new LoginResponse('123')).delay(1000).pipe(tap(val => console.log(`BEFORE MAP: ${val}`)), map(x => x.token==='1'));
    // return Observable.throw('asd')..delay(1000).pipe(tap(val => console.log(`BEFORE MAP: ${val}`)), map(x => x.token === '1'));
+  }
+
+  get userName():string {
+    return this._userName;
   }
 
   login(username: string, password: string): Observable<boolean> {
@@ -49,10 +54,13 @@ export class AuthenticationService {
           // set token property
           this.token = token;
           this._loggedIn = true;
+          this._userName = username;
           // store username and jwt token in local storage to keep user logged in between page refreshes
-          
-          localStorage.setItem('auth_token', token);          
-        } 
+          EmitterService.get("username_id").emit(this._userName);
+          localStorage.setItem('auth_token', token);
+        } else {
+          this._userName = null;
+        }
       }).map(res => !!res.token)
       ;
   }
@@ -60,6 +68,8 @@ export class AuthenticationService {
   logout() {
     localStorage.removeItem('auth_token');
     this._loggedIn = false;    
+    this._userName = null;
+    EmitterService.get("username_id").emit(null);
   }
   isLoggedIn() {
     return this._loggedIn;

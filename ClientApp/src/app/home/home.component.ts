@@ -2,7 +2,7 @@ import { Component, Inject, ViewChild,ElementRef } from '@angular/core';
 import { SingletonService } from '../services/singleton.service';
 import { CounterService } from '../services/counter.service';
 import { OnInit,Input } from '@angular/core';
-import { setTimeout } from 'timers';
+//import { setTimeout } from 'timers';
 import { ChangeDetectionStrategy } from '@angular/core';
 
 
@@ -11,7 +11,7 @@ declare let $;
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  providers: [CounterService],
+  //providers: [CounterService],
   //changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit {
@@ -27,11 +27,11 @@ export class HomeComponent implements OnInit {
     this.containerEl.nativeElement.style.color = 'cyan';
 
     //   $("#myModal").modal();
-   setTimeout(() => {
+    setTimeout(() => {
       this.s1 = "911";
-    //  this.someProp = "filled after pause";
-     // this.someObj.name = "name value changed";
-    }, 3000)
+    //    this.someProp = "filled after pause";
+      // this.someObj.name = "name value changed";
+    }, 3000);
 
 
 }

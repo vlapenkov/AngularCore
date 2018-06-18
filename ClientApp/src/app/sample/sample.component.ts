@@ -15,6 +15,7 @@ export class SampleComponent implements OnInit {
   constructor(private cd: ChangeDetectorRef ) { }
 
   ngOnInit() {
+    
   }
 
  

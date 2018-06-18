@@ -55,6 +55,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './services/token.interceptor';
 import { SomeOtherModule } from './some-other/some-other.module';
 import { SampleComponent } from './sample/sample.component';
+import { LoginStatusComponent } from './login-status/login-status.component';
 
 @NgModule({
 // то что принадлежит этому модулю
@@ -69,7 +70,8 @@ import { SampleComponent } from './sample/sample.component';
     DriverformComponent,
     LoginComponent,
     Error404Component,
-    SampleComponent
+    SampleComponent,
+    LoginStatusComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

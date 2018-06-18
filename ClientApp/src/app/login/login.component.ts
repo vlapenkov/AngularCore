@@ -58,19 +58,5 @@ export class LoginComponent implements OnInit {
     )
   }
 
-  /*
-  loginfake() {
-    this.loading = true;
-    this.authenticationService.loginfake(this.model.username, this.model.password)
-      .subscribe(result => {
-        console.log('result is:' + result);
-        this.loading = false;
-      },
-
-      error => {
-        this.error = 'error';
-        this.loading = false;
-      }
-      )
-  }*/
+  
 }

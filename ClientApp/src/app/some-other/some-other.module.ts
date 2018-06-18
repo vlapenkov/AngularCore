@@ -6,7 +6,7 @@ import { CounterComponent } from '../counter/counter.component';
   imports: [
     CommonModule
   ],
-  providers: [CounterService],
+ providers: [CounterService],
   declarations: [  CounterComponent ],
   exports: [CounterComponent] 
 })

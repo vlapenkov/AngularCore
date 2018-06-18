@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SomeOtherModule } from '../some-other/some-other.module';
+//import { SomeOtherModule } from '../some-other/some-other.module';
 
 @Injectable()
 export class CounterService {
